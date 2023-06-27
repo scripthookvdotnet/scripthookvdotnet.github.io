@@ -1,0 +1,16 @@
+---
+const { title, additionalClasses } = Astro.props;
+---
+
+<section class="feature-desc-section">
+  <h2>{title}</h2>
+  <slot />
+</section>
+
+<style>
+  @media only screen and (min-width: 90rem) {
+    .feature-desc-section {
+      width: 90rem;
+    }
+  }
+</style>

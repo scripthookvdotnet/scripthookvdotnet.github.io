@@ -1,0 +1,238 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="disclaimer">
+          ScriptHookVDotNet is not affiliated with or endorsed by Rockstar
+          Games, Take-Two Interactive or other rightsholders. Any trademarks
+          used belong to their respective owners.
+        </div>
+        <div class="copyright">
+          ScriptHookVDotNet is © 2015-2023 by crosire / kagikn.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :where([hidden]:not([hidden='until-found'])) {
+    display: none !important;
+  }
+
+  :where(html) {
+    -webkit-text-size-adjust: none;
+    color-scheme: dark;
+  }
+
+  @supports not (min-block-size: 100dvb) {
+    :where(html) {
+      block-size: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :where(html:focus-within) {
+      scroll-behavior: smooth;
+    }
+  }
+
+  :where(body) {
+    block-size: 100%;
+    block-size: 100dvb;
+    line-height: 1.5;
+    font-family: system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :where(input, button, textarea, select) {
+    font: inherit;
+    color: inherit;
+  }
+
+  :where(textarea) {
+    resize: vertical;
+    resize: block;
+  }
+
+  :where(button, label, select, summary, [role='button'], [role='option']) {
+    cursor: pointer;
+  }
+
+  :where(:disabled) {
+    cursor: not-allowed;
+  }
+
+  :where(label:has(> input:disabled), label:has(+ input:disabled)) {
+    cursor: not-allowed;
+  }
+
+  :where(button) {
+    border-style: solid;
+  }
+
+  :where(a) {
+    text-underline-offset: 0.2ex;
+  }
+
+  :where(ul, ol) {
+    list-style: none;
+  }
+
+  :where(img, svg, video, canvas, audio, iframe, embed, object) {
+    display: block;
+  }
+
+  :where(img, picture, svg) {
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
+  :where(p, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
+  }
+
+  :where(h1, h2, h3) {
+    line-height: calc(1em + 0.5rem);
+  }
+
+  :where(hr) {
+    border: none;
+    border-block-start: 1px solid;
+    color: inherit;
+    block-size: 0;
+    overflow: visible;
+  }
+
+  :where(:focus-visible) {
+    outline: 2px solid var(--focus-color, Highlight);
+    outline-offset: 2px;
+  }
+
+  :where(
+      .visually-hidden:not(:focus, :active, :focus-within, .not-visually-hidden)
+    ) {
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  a {
+    color: inherit;
+    transition: all 0.15s ease;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .astro-code {
+    overflow: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  footer {
+    font-family: Inter, sans-serif;
+  }
+
+  .footer {
+    background: top/100px repeat-x, bottom/cover url(/images/bg-dark-mode.jpg);
+  }
+
+  @media (prefers-color-scheme: light) {
+    .footer {
+      background: top/100px repeat-x,
+        bottom/cover url(/images/bg-light-mode.jpg);
+    }
+  }
+
+  .footer-container {
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: [disclaimer-start] 6fr [disclaimer-end] 1fr [copyright-start] 3fr [copyright-end];
+    padding: 24px 16px;
+    background-image: linear-gradient(
+      rgba(var(--background-color-rgb), 0.92),
+      rgba(var(--background-color-rgb), 0.6) 10%,
+      rgba(var(--background-color-rgb), 0.3) 15%,
+      rgba(0, 0, 0, 0) 20%
+    );
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: var(--footer-bg-filter);
+  }
+
+  .disclaimer {
+    grid-column-start: disclaimer-start;
+    grid-column-end: disclaimer-end;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .copyright {
+    padding-top: 16px;
+    padding-bottom: 8px;
+    grid-column-start: copyright-start;
+    grid-column-end: copyright-end;
+  }
+
+  @media only screen and (max-width: 48em) {
+    .footer-container {
+      display: grid;
+      grid-template-rows: auto;
+      grid-template-columns: auto;
+    }
+
+    .disclaimer {
+      grid-column-start: auto;
+      grid-column-end: auto;
+      width: auto;
+    }
+
+    .copyright {
+      grid-column-start: auto;
+      grid-column-end: auto;
+    }
+  }
+</style>

@@ -1,0 +1,326 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout title="Welcome to Astro.">
+  <div class="section-base-container">
+    <Header />
+    <section class="section-body-container">
+      <section class="faq">
+        <h2>F.A.Q.</h2>
+        <div class="faq-case-container">
+          <section id="supported-game-versions">
+            <h3>
+              <a href="#supported-game-versions">#</a> Can I use SHVDN in any game
+              versions?
+            </h3>
+            <p>
+              Yes! SHVDN itself supports all official versions including
+              v1.0.372.2. If we find our APIs that can be technically used but
+              not working in some game versions despite our intention, we will
+              fix them. If you find some of them or if you wonder the supported
+              game versions of certain APIs due to the lack of the
+              documentations, your reports would be greatly appreciated on
+              <a
+                href="https://github.com/scripthookvdotnet/scripthookvdotnet/issues/new/choose"
+                >GitHub</a
+              >.
+              <br /><br />
+              Since some major game update introduces some native functions (Rockstar
+              calls them commands) and SHVDN lets their scripts do unsafe operations
+              including but not limited to arbitrary direct memory reading/writing,
+              some advanced SHVDN scripts may not work in certain game versions.
+              If some scripts do not work in certain versions and you believe it
+              is wrong, you might want to consult the script developers for more
+              supported game versions.
+            </p>
+          </section>
+          <section id="pirated-copy">
+            <h3>
+              <a href="#pirated-copy">#</a> Help! My pirated copy does not work!
+            </h3>
+            <p>
+              SHVDN does not contain any anti-piracy checks of any kind. Pirated
+              copies just do not receive support. If it works, then it works. If
+              not, additional support is not going to be added. We just do not
+              care about any pirated copies.
+            </p>
+          </section>
+          <section id="rgsc-features">
+            <h3>
+              <a href="#rgsc-features">#</a> Does SHVDN disable all Rockstar Games
+              Social Club features?
+            </h3>
+            <p>
+              Nope! SHVDN does not intentionally disable any Rockstar Social
+              Club features. For example, you can use your GTA:O characters in
+              Director Mode while SHVDN is installed in your game.
+              <br />
+              However, the game prevent you from playing GTA:O while an ASI loader
+              is installed for altered game files. Therefore, you must uninstall
+              any mods including SHVDN and the ASI loader before you can play GTA:O.
+            </p>
+          </section>
+          <section id="shvdn-crashes">
+            <h3>
+              <a href="#shvdn-crashes">#</a> My SHVDN keeps crashing, what am I going
+              do to fix the issue?
+            </h3>
+            <p>
+              You should find out what scripts are causing your issue. You would
+              want to try removing suspicious scripts one by one.
+              <br />
+              Unfortunately, Script Hook V's structured exception handling disables
+              SHVDN (and any ASI plugins) to create crash logs, so we cannot help
+              you with our crash logs until some ASI plugin is released that can
+              disable Script Hook V's structured exception handling. If said plugin
+              is released, we may create our crash logging feature.
+            </p>
+          </section>
+          <section id="cherry-picking">
+            <h3>
+              <a href="#developers">#</a> Can I cherry-pick the versions of ASI and
+              scripting DLLs I want to use to run without having issues?
+            </h3>
+            <p>
+              No, you can't. You need to use the ASI file and the DLL files for
+              APIs in an archive of the same version because the internal
+              structure of the SHVDN runtime and scripting SDK/APIs can be
+              changed without notices. If you experience some issues by
+              cherry-picking a ASI file and DLL files for scripting SDK/APIs, we
+              will not provide support at all.
+            </p>
+          </section>
+          <section id="dotnet-core">
+            <h3>
+              <a href="#dotnet-core">#</a> Is there .NET Core/.NET 5+ variant of
+              SHVDN?
+            </h3>
+            <p>
+              In official, that will not happen until the v4 SDK of SHVDN is
+              released for more organized and polished SDK. The lack of most
+              features of <a
+                href="https://learn.microsoft.com/en-us/dotnet/api/system.appdomain?view=net-7.0"
+                >AppDomain</a
+              >, which SHVDN relies on for script reload, forces us to
+              pracically recreate a runtime against .NET Core/.NET 5+ from
+              scratch before we can create our .NET Core/.NET 5+ variant of
+              SHVDN. Also, we are aiming to figure out major flaws of our v3
+              scripting SDK/API before we release SHVDN v4.
+              <br />
+              You can try <a
+                href="https://github.com/Sardelka9515/scripthookvdotnetcore"
+                >ScriptHookV .NET Core</a
+              > if you want to try a forked .NET 7 variant of SHVDN.
+            </p>
+          </section>
+          <section id="how-to-use-sdk">
+            <h3>
+              <a href="#how-to-use-sdk">#</a> How can I use a scripting SDK/API for
+              my script?
+            </h3>
+            <p>
+              You create your project for a "Class Library (.NET Framework)",
+              and add the ScriptHookVDotNet3 package as a reference. You can use <a
+                href="https://www.nuget.org/packages/ScriptHookVDotNet3"
+                >the NuGet package for v3 SDK/API</a
+              > for easier management. And then, you create at least one class that
+              inherits from the GTA.Script class and has a public default constructor.
+              <br />
+              Your scripts should subscribe to at least one of Tick, KeyDown, and
+              KeyUp events to have some effect on the game in practical. Also, they
+              should subscribe to the Aborted event in the typical case so they can
+              dispose of their own scripting resources when about to be terminated.
+            </p>
+          </section>
+          <section id="recommended-script-lang">
+            <h3>
+              <a href="#recommended-script-lang">#</a> I never coded before; which
+              language should I learn?
+            </h3>
+            <p>
+              <a href="https://learn.microsoft.com/en-us/dotnet/csharp/">C#</a>.
+              You might appreciate C# more if you learn to use unsafe code for
+              more interop between your script and the game. You can even do
+              some custom function hooking for super advanced features with a
+              library such as <a href="https://easyhook.github.io/">EasyHook</a
+              >.
+              <br />
+              C# also supports direct unsafe operations and <a
+                href="https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.dllimportattribute?view=netframework-4.8"
+                >one-way C/C++ function invokation</a
+              >. This would indicate you might not want to bother to use C++/CLI
+              unless you have to create scripts where some functions can be
+              called from programs built against C or C++, which is unlikely to
+              happen.
+            </p>
+          </section>
+          <section id="recommended-sdk-version">
+            <h3>
+              <a href="#recommended-sdk-version">#</a> SHVDN archive contains multiple
+              scripting DLLs, which version should I use?
+            </h3>
+            <p>
+              You should use the latest scripting version for new projects,
+              which is, v3 as of v3.7.0. Older scripting SDK/APIs should be used
+              only for older projects built against an older SDK/API or when you
+              have to use libraries built against an older SDK/API.
+              <br /><br />
+              We make breaking changes only in new major versions, except for ones
+              that will break only few scripts in favor of performance improvements.
+              Older scripting SDK/APIs will not receive any new features after we
+              release a newer major version. We do not immediately stop supporting
+              older scripting SDK/APIs for compatibility issues or performance improvements
+              after a new major version is released, but some of the flawed API designs
+              of older SDK/APIs may prevent us from improving performance and the
+              convenience like we can do in newer SDK/APIs.
+            </p>
+          </section>
+          <section id="no-method-declarations-for-natives">
+            <h3>
+              <a href="#no-method-declarations-for-natives">#</a> Why don't scripting
+              API have any method declarations for native functions? Why is there
+              no wrappers for the method declarations?
+            </h3>
+            <p>
+              We dediced not to do either of them by design. We don't provide
+              wrappers for the typed method declarations intended to use within
+              scripts, because the C# compiler does not remove any unused
+              methods or properties whose visibility are restricted to its
+              assembly. Scripting SDK/APIs will never have any typed method
+              declarations because you have to disassemble GTA5.exe to exactly
+              know how natives work and Rockstar may change some native
+              functions to take additional arguments in some game updates (there
+              are cases in v1.0.1103.2 at the latest).
+            </p>
+          </section>
+          <section id="shvdn-alias">
+            <h3>
+              <a href="#shvdn-alias">#</a> Is SHVDN the official abbreviation of
+              ScriptHookVDotNet? What happened to "Community Script Hook V .NET"?
+            </h3>
+            <p>
+              For the official abbreviation, yes. We recommend using "<strong
+                >SHVDN</strong
+              >" as the abbreviation of ScriptHookVDotNet, just like the
+              developers of RAGE Plugin Hook (MulleDK19 and LMS) always use
+              "RPH" as the official abbreviation. On the other hand, we don't
+              recommend using "SHDN" ('V' is absent) since using SHDN as an
+              abbreviation may result in the ambiguity between ScriptHookVDotNet
+              and <a href="https://github.com/HazardX/gta4_scripthookdotnet"
+                >GTAIV .Net Script Hook</a
+              > in GTA communities.
+              <br /><br />
+              We rarely use the name "Community Script Hook V .NET" today as much
+              more people calls this plugin ScriptHookVDotNet than those who call
+              "Community Script Hook V .NET".
+            </p>
+          </section>
+          <section id="developers">
+            <h3>
+              <a href="#developers">#</a> So... Who's developing ScriptHookVDotNet?
+            </h3>
+            <p>
+              <a href="https://github.com/kagikn">kagikn</a> and contributors, and
+              formerly <a href="https://github.com/crosire">crosire</a> led the project
+              since April 2015 until May 2023. kagikn is leading the project <a
+                href="https://github.com/scripthookvdotnet/scripthookvdotnet/issues/1222"
+                >since crosire assigned kagikn to the repository maintenance</a
+              > except for the participation in changes to the ScriptDomain core
+              in May 2023.
+              <br />
+            </p>
+          </section>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <style>
+    :root {
+      --colors-primary-cyan: #00afea;
+      background-color: #1d1d22;
+      --background-color-rgb: 29, 29, 34;
+      --text-color-rgb: 255, 255, 255;
+      color: white;
+      --hero-bg-filter: brightness(70%) blur(2px);
+      --footer-bg-filter: brightness(80%) blur(1px);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --colors-primary-cyan: #1466b8;
+        background-color: #f4f2ff;
+        --background-color-rgb: 244, 242, 255;
+        color: #121212;
+        --text-color-rgb: 18, 18, 18;
+        --hero-bg-filter: blur(2px);
+        --footer-bg-filter: brightness(125%) saturate(80%) blur(2px);
+      }
+    }
+
+    body {
+      font-family: Open Sans, sans-serif;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      grid-template-columns: 100%;
+      min-height: 100vh;
+    }
+
+    .shvdn-title {
+      font-family: Open Sans, sans-serif;
+    }
+
+    .hero {
+      padding: 24px 16px;
+      display: flex;
+      align-items: center;
+
+      display: grid;
+      grid-template-rows: 100%;
+      grid-template-columns: [section-start] 6.5fr [section-end] 0.5fr [download-start] 2.5fr [download-end];
+    }
+
+    .faq {
+      display: grid;
+      grid-template-rows: [faq-title-start] auto [faq-title-end] 26px [faq-case-start] 1fr [faq-case-end];
+    }
+
+    @media only screen and (min-width: 90rem) {
+      .faq {
+        width: 90rem;
+      }
+    }
+
+    .faq-case-container {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.5rem;
+      grid-row-start: faq-case-start;
+      grid-row-end: faq-case-end;
+    }
+
+    .faq-case-container > section {
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.375rem;
+    }
+
+    .faq-case-container > section > h3 > a {
+      color: rgba(var(--text-color-rgb), 0.5);
+    }
+
+    .faq-case-container a {
+      text-decoration: underline;
+    }
+
+    .faq-case-container a:hover {
+      color: var(--colors-primary-cyan);
+    }
+
+    .section-body-container > * {
+      padding: 24px 16px;
+    }
+  </style>
+</Layout>

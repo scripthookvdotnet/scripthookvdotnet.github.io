@@ -1,0 +1,293 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import FeatureSection from '../components/FeatureSection.astro';
+---
+
+<Layout title="ScriptHookVDotNet">
+  <div class="section-base-container">
+    <div class="shvdn">
+      <div class="shvdn-container">
+        <Header />
+        <div class="hero">
+          <section>
+            <h1>Concise. Powerful. Productive.</h1>
+            <p class="hero-desc">
+              <strong>ScriptHookVDotNet (SHVDN)</strong> is a script runtime that
+              runs under Script Hook V. SHVDN hosts .NET Framework scripts and acts
+              as an interface between custom .NET code and Grand Theft Auto V for
+              Story Mode. SHVDN offers you an easier scripting environment for GTA
+              V with guided APIs than what Script Hook V offers for C++ scripts.
+            </p>
+          </section>
+          <div class="download-section">
+            <a
+              class="download-button"
+              role="button"
+              href="https://github.com/scripthookvdotnet/scripthookvdotnet/releases/latest"
+            >
+              Download
+            </a>
+            <p class="download-note">PC version only</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="section-body-container">
+      <section class="feat-section-container">
+        <FeatureSection
+          title="Write scripts with comfort and powerful .NET ecosystem"
+        >
+          <p>
+            SHVDN lets you create .NET scripts without having to learn C++.
+            Create your scripts with the help of APIs written in the
+            object-oritented style. You can use arbitrary .NET Framework
+            libraries, too.
+          </p>
+        </FeatureSection>
+        <FeatureSection
+          title="More guided scripting API interfaces, faster test cycle"
+        >
+          <p>
+            Scripting APIs provide interfaces organized more than native
+            functions GTA V provides for their script "threads", which can be
+            instantiated by ysc script container files or ASI scripts. SHVDN
+            provides document for well-known APIs and usages, and it reduces
+            time spent testing the behaviors of native functions for typical
+            usages.
+            <br />
+            Although the SHVDN runtime cannot be reloaded after Script Hook V unloads
+            all the loaded ASI scripts once for now, SHVDN offers the ability to
+            reload the entire SHVDN runtime, and SHVDN scripts can be reloaded by
+            executing the reload command of SHVDN.
+          </p>
+        </FeatureSection>
+        <FeatureSection title="Non-aggressive limitation removal">
+          <p>
+            SHVDN removes some limitations that custom scripts cannot encounter
+            by accident (thus non-aggressive), such as despawning GTA Online
+            vehicles, prop (object) model check, and player model check.
+            <br />
+            To let your game customizable as possible, SHVDN will not remove any
+            limitations that custom scripts can encounter without decent care, such
+            as linear and angular velocity limits.
+          </p>
+        </FeatureSection>
+      </section>
+      <section class="requirements">
+        <h2>Requirements</h2>
+        <ul>
+          <li>
+            <a href="http://www.dev-c.com/gtav/scripthookv/">Script Hook V</a>
+          </li>
+          <li>
+            <a
+              href="https://dotnet.microsoft.com/download/dotnet-framework/net48"
+            >
+              Microsoft .NET Framework 4.8+
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads"
+              >Microsoft Visual C++ Redistributable Package for Visual Studio
+              2019+ (x64)
+            </a>
+          </li>
+        </ul>
+        <p>
+          Note: Microsoft .NET Framework 4.8 is pre-installed in Windows 10 and
+          Windows 11, and Rockstar Games Launcher installs Microsoft Visual C++
+          Redistributable Package for Visual Studio 2019.
+          <br />
+          So you should only need to have Script Hook V installed in the usual case.
+        </p>
+      </section>
+    </section>
+  </div>
+
+  <script></script>
+
+  <style>
+    :root {
+      --colors-primary-cyan: #00afea;
+      background-color: #1d1d22;
+      --background-color-rgb: 29, 29, 34;
+      --text-color-rgb: 255, 255, 255;
+      color: white;
+      --hero-bg-filter: brightness(70%) blur(2px);
+      --footer-bg-filter: brightness(80%) blur(1px);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --colors-primary-cyan: #1466b8;
+        background-color: #f4f2ff;
+        --background-color-rgb: 244, 242, 255;
+        color: #121212;
+        --text-color-rgb: 18, 18, 18;
+        --hero-bg-filter: blur(2px);
+        --footer-bg-filter: brightness(125%) saturate(80%) blur(2px);
+      }
+    }
+
+    body {
+      font-family: Open Sans, sans-serif;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      grid-template-columns: 100%;
+      min-height: 100vh;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    footer {
+      font-family: Inter, sans-serif;
+    }
+
+    .feat-section-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px 0;
+    }
+
+    .shvdn-title {
+      font-family: Open Sans, sans-serif;
+    }
+
+    .hero {
+      padding: 24px 16px;
+      display: flex;
+      align-items: center;
+
+      display: grid;
+      grid-template-rows: 100%;
+      grid-template-columns: [section-start] 6.5fr [section-end] 0.5fr [download-start] 2.5fr [download-end];
+    }
+
+    .hero h1 {
+      font-size: 48px;
+    }
+
+    .hero-desc {
+      font-size: 20px;
+    }
+
+    .download-container {
+      flex-basis: 33%;
+    }
+
+    .download-section {
+      text-align: center;
+      grid-column-start: download-start;
+      grid-column-end: download-end;
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        flex-direction: row;
+        grid-template-rows: auto;
+        grid-template-columns: auto;
+      }
+
+      .download-section {
+        text-align: center;
+        grid-column-start: auto;
+        grid-column-end: auto;
+      }
+    }
+
+    .download-button {
+      display: block;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      border-width: 2px;
+      border-radius: 8px;
+      font-weight: 600;
+      background-color: #35bce9;
+      color: #1a1a1b;
+      font-size: 24px;
+      text-decoration: none;
+      font-family: Inter, sans-serif;
+    }
+
+    .download-button:hover {
+      text-decoration: none;
+      background-color: #59c8ee;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .download-button {
+        background-color: #1466b8;
+        color: #e8e8e8;
+      }
+      .download-button:hover {
+        background-color: #2879ca;
+        color: #e8e8e8;
+      }
+    }
+
+    .download-note {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .shvdn {
+      background: url(/images/bg-dark-mode.jpg) no-repeat 50% 70% / cover;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .shvdn {
+        background: url(/images/bg-light-mode.jpg) no-repeat 50% 50% / cover;
+        background-size: cover;
+      }
+    }
+
+    .shvdn-container {
+      background-image: linear-gradient(
+        rgba(0, 0, 0, 0) 92.5%,
+        rgba(var(--background-color-rgb), 0.45) 96.25%,
+        rgba(var(--background-color-rgb), 0.8) 100%
+      );
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 70vh;
+      backdrop-filter: var(--hero-bg-filter);
+    }
+
+    @media (prefers-color-scheme: light) {
+      .shvdn-container {
+        backdrop-filter: blur(2.5px);
+      }
+    }
+
+    .section-body-container > * {
+      padding: 24px 16px;
+    }
+
+    .requirements ul {
+      list-style: disc;
+      margin: 0 0 2em 0;
+      padding-left: 2rem;
+    }
+
+    .system-requirement ul li {
+      padding-left: 0.5em;
+    }
+
+    .requirements p {
+      opacity: 0.675;
+    }
+  </style>
+
+  <style is:global>
+    .reinforced-ragdoll-velocity-snippet {
+      padding: 8px;
+    }
+  </style>
+</Layout>

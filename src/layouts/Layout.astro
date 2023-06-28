@@ -175,6 +175,16 @@ const { title } = Astro.props;
     font-family: Inter, sans-serif;
   }
 
+  :root {
+    --footer-bg-filter: brightness(60%) blur(1px);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --footer-bg-filter: brightness(120%) saturate(90%) blur(2px);
+    }
+  }
+
   .footer {
     background: top/100px repeat-x, bottom/cover url(/images/bg-dark-mode.jpg);
   }

@@ -20,16 +20,43 @@ import FeatureSection from '../components/FeatureSection.astro';
               V with guided APIs than what Script Hook V offers for C++ scripts.
             </p>
           </section>
-          <div class="download-section">
-            <a
-              class="download-button"
-              role="button"
-              href="https://github.com/scripthookvdotnet/scripthookvdotnet/releases/latest"
-            >
-              Download
-            </a>
-            <p class="download-note">PC version only</p>
-          </div>
+          <section class="download-section">
+            <section class="download-button-groups">
+              <section class="download-button-group-nightly">
+                <a
+                  class="download-button download-button-nightly"
+                  role="button"
+                  href="https://github.com/scripthookvdotnet/scripthookvdotnet-nightly/releases/latest"
+                >
+                  Latest Nightly
+                </a>
+                <a
+                  class="download-button-prev-vers download-button-nightly-prev-vers"
+                  role="button"
+                  href="https://github.com/scripthookvdotnet/scripthookvdotnet-nightly/releases"
+                >
+                  Previous Nightly Versions
+                </a>
+              </section>
+              <section class="download-button-group-stable">
+                <a
+                  class="download-button"
+                  role="button"
+                  href="https://github.com/scripthookvdotnet/scripthookvdotnet/releases/latest"
+                >
+                  Latest Stable
+                </a>
+                <a
+                  class="download-button-prev-vers"
+                  role="button"
+                  href="https://github.com/scripthookvdotnet/scripthookvdotnet/releases"
+                >
+                  Previous Stable Versions
+                </a>
+              </section>
+            </section>
+            <p class="download-note">Note: PC version only</p>
+          </section>
         </div>
       </div>
     </div>
@@ -197,6 +224,21 @@ import FeatureSection from '../components/FeatureSection.astro';
       }
     }
 
+    .download-button-groups {
+      display: grid;
+      grid-template-columns: [nightly-group-start] 1fr [nightly-group-end] 16px [stable-group-start] 1fr [stable-group-end];
+    }
+
+    .download-button-group-nightly {
+      grid-column-start: nightly-group-start;
+      grid-column-end: nightly-group-end;
+    }
+
+    .download-button-group-stable {
+      grid-column-start: stable-group-start;
+      grid-column-end: stable-group-end;
+    }
+
     .download-button {
       display: block;
       padding-left: 40px;
@@ -205,27 +247,100 @@ import FeatureSection from '../components/FeatureSection.astro';
       padding-bottom: 24px;
       border-width: 2px;
       border-radius: 8px;
+      min-width: 260px;
       font-weight: 600;
-      background-color: #35bce9;
+      background-color: #1379d8;
       color: #1a1a1b;
       font-size: 24px;
       text-decoration: none;
       font-family: Inter, sans-serif;
     }
 
-    .download-button:hover {
-      text-decoration: none;
-      background-color: #59c8ee;
+    @media (max-width: 1280px) {
+      .download-button {
+        min-width: 200px;
+      }
     }
+
+    @media (max-width: 1024px) {
+      .download-button {
+        min-width: 0;
+      }
+    }
+
+    .download-button:hover {
+      background-color: rgb(46 139 226);
+    }
+
+    .download-button-prev-vers {
+      display: block;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      font-weight: 600;
+      background: none;
+      color: #64aaeb;
+      font-size: 18px;
+      text-decoration: none;
+      font-family: Inter, sans-serif;
+    }
+
+    .download-button-prev-vers:hover {
+      color: #9bc3e9;
+    }
+
+    .download-button-nightly {
+      text-decoration: none;
+      color: #ecc045;
+      background-color: rgb(26, 26, 27);
+    }
+
+    .download-button-nightly:hover {
+      color: rgb(241, 205, 103);
+      background-color: rgb(26 26 27 / 0.7);
+    }
+
+    .download-button-nightly-prev-vers {
+      color: #f5e58d;
+    }
+
+    .download-button-nightly-prev-vers:hover {
+      color: #faf4d3;
+    }
+
 
     @media (prefers-color-scheme: light) {
       .download-button {
-        background-color: #1466b8;
+        background-color: #233dcc;
         color: #e8e8e8;
       }
       .download-button:hover {
-        background-color: #2879ca;
+        background-color: #1e54c9;
         color: #e8e8e8;
+      }
+
+      .download-button-prev-vers {
+        color: #07132c;
+      }
+
+      .download-button-prev-vers:hover {
+        color: #3056b1;
+      }
+
+      .download-button-nightly {
+        color: #f8d122;
+        background-color: rgb(26, 26, 27);
+      }
+      .download-button-nightly:hover {
+        color: rgb(252, 215, 50);
+        background-color: rgb(26 26 27 / 0.9);
+      }
+
+      .download-button-nightly-prev-vers {
+        color: #332c0e;
+      }
+
+      .download-button-nightly-prev-vers:hover {
+        color: #7c6c2a;
       }
     }
 
